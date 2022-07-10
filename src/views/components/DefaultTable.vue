@@ -1,7 +1,17 @@
 <template>
   <div class="card">
     <div class="card-header pb-0">
-      <h6>{{ table.title }}</h6>
+      <div class="row">
+        <div class="col-6 d-flex align-items-center">
+           <h6>{{ table.title }}</h6>
+        </div>
+        <div class="col-6 text-end">
+          <argon-button color="dark" variant="gradient">
+            <i class="fas fa-plus me-2"></i>
+            Novo agendamento
+          </argon-button>
+        </div>
+      </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -34,9 +44,15 @@
 </template>
 
 <script>
+
+import ArgonButton from "@/components/ArgonButton.vue";
+
 export default {
     name: "default-table",
     props: ['values'],
+    components: {
+      ArgonButton,
+    },
     mounted: function () {
         console.log(this.values.tbody[0]);
     },

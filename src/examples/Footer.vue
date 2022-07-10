@@ -9,7 +9,7 @@
           >
             ©
             {{ new Date().getFullYear() }}, feito com
-            <i class="fa fa-heart"></i> by
+            <i class="fa fa-heart"></i> por
             <a
               href="#"
               class="font-weight-bold"

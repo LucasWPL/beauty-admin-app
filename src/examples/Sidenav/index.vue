@@ -2,7 +2,7 @@
   <div
     v-show="this.$store.state.layout === 'default'"
     class="min-height-300 position-absolute w-100"
-    :class="`${this.$store.state.darkMode ? 'bg-transparent' : 'bg-success'}`"
+    :class="`${this.$store.state.darkMode ? 'bg-transparent' : 'bg-info'}`"
   />
   <aside
     class="my-3 overflow-auto border-0 sidenav navbar navbar-vertical navbar-expand-xs border-radius-xl"
@@ -10,7 +10,7 @@
       this.$store.state.isRTL
         ? 'me-3 rotate-caret fixed-end'
         : 'fixed-start ms-3'
-    } 
+    }
     ${
       this.$store.state.layout === 'landing'
         ? 'bg-transparent shadow-none'
