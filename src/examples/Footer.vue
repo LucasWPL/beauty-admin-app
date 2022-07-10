@@ -8,15 +8,18 @@
             :class="this.$store.state.isRTL ? 'text-lg-end' : 'text-lg-start'"
           >
             ©
-            {{ new Date().getFullYear() }}, made with
+            {{ new Date().getFullYear() }}, feito com
             <i class="fa fa-heart"></i> by
             <a
-              href="https://www.creative-tim.com"
+              href="#"
               class="font-weight-bold"
-              target="_blank"
-              >Creative Tim</a
+              >WPL Labs</a
+            > &
+            <a
+              href="#"
+              class="font-weight-bold"
+              >BY MADU DESIGN</a
             >
-            for a better web.
           </div>
         </div>
         <div class="col-lg-6">
@@ -25,34 +28,34 @@
           >
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com"
+                href="#"
                 class="nav-link text-muted"
                 target="_blank"
-                >Creative Tim</a
+                >Documentação</a
               >
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/presentation"
+                href="#"
                 class="nav-link text-muted"
                 target="_blank"
-                >About Us</a
+                >Sobre nós</a
               >
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/blog"
+                href="#"
                 class="nav-link text-muted"
                 target="_blank"
-                >Blog</a
+                >Instagram</a
               >
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/license"
+                href="#"
                 class="nav-link pe-0 text-muted"
                 target="_blank"
-                >License</a
+                >Whatsapp</a
               >
             </li>
           </ul>
