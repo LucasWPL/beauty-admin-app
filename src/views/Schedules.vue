@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import DefaultTable from "./components/DefaultTable.vue";
+import DefaultTable from "./components/table/DefaultTable.vue";
 
 export default {
   name: "tables",
@@ -19,7 +19,15 @@ export default {
   data() {
     return {
       defaultTableValues: {
-        title: "Procedimentos agendados",
+        header: {
+          title: "Procedimentos agendados",
+          action: {
+            color: 'info',
+            iconClass: 'fas fa-plus me-2',
+            text: 'Novo agendamento',
+            url: '/new-schedules',
+          }
+        },
         thead: [
             'Cliente',
             'Procedimentos',

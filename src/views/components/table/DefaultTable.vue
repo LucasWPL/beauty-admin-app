@@ -1,18 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header pb-0">
-      <div class="row">
-        <div class="col-6 d-flex align-items-center">
-           <h6>{{ table.title }}</h6>
-        </div>
-        <div class="col-6 text-end">
-          <argon-button color="dark" variant="gradient">
-            <i class="fas fa-plus me-2"></i>
-            Novo agendamento
-          </argon-button>
-        </div>
-      </div>
-    </div>
+    <default-header :title="this.values.header.title" :action="this.values.header.action" />
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
@@ -20,12 +8,12 @@
             <tr>
                 <th
                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    v-for="(value, index) in table.thead" :key="index"
+                    v-for="(value, index) in this.values.thead" :key="index"
                 >{{ value }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(tds, index) in table.tbody" :key="index">
+            <tr v-for="(tds, index) in this.values.tbody" :key="index">
               <td v-for="(td, indexTd) in tds" :key="indexTd">
                 <div class="d-flex px-3 py-1">
                   <div class="d-flex flex-column justify-content-center">
@@ -44,22 +32,17 @@
 </template>
 
 <script>
-
-import ArgonButton from "@/components/ArgonButton.vue";
+import DefaultHeader from "./parts/DefaultHeader.vue";
 
 export default {
     name: "default-table",
     props: ['values'],
     components: {
-      ArgonButton,
-    },
-    mounted: function () {
-        console.log(this.values.tbody[0]);
+      DefaultHeader,
     },
     data() {
-    return {
-        table: this.values,
-    };
+      return {
+      };
     }
 };
 </script>
