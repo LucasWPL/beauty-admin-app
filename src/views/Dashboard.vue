@@ -10,6 +10,7 @@
               :percentage="stats.costumers.percentage"
               :iconClass="stats.costumers.iconClass"
               :iconBackground="stats.costumers.iconBackground"
+              :percentageColor="stats.costumers.percentageColor"
               :detail="stats.costumers.detail"
               directionReverse
             ></card>
@@ -28,12 +29,13 @@
           </div>
           <div class="col-lg-3 col-md-6 col-12">
             <card
-              :title="stats.return.title"
-              :value="stats.return.value"
-              :percentage="stats.return.percentage"
-              :iconClass="stats.return.iconClass"
-              :iconBackground="stats.return.iconBackground"
-              :detail="stats.return.detail"
+              :title="stats.returns.title"
+              :value="stats.returns.value"
+              :percentage="stats.returns.percentage"
+              :iconClass="stats.returns.iconClass"
+              :iconBackground="stats.returns.iconBackground"
+              :percentageColor="stats.returns.percentageColor"
+              :detail="stats.returns.detail"
               directionReverse
             ></card>
           </div>
@@ -44,6 +46,7 @@
               :percentage="stats.records.percentage"
               :iconClass="stats.records.iconClass"
               :iconBackground="stats.records.iconBackground"
+              :percentageColor="stats.records.percentageColor"
               :detail="stats.records.detail"
               directionReverse
             ></card>
@@ -125,38 +128,37 @@ export default {
   data() {
     return {
       stats: {
-        records: {
-          title: "Clientes totais",
-          value: "100",
-          percentage: "+55%",
-          iconClass: "fa fa-plus",
-          detail: "neste mês",
-          iconBackground: "bg-gradient-primary",
-        },
         costumers: {
           title: "Clientes hoje",
-          value: "3",
-          percentage: "+3",
+          value: '...',
+          percentage: '...',
           iconClass: "ni ni-single-02",
           iconBackground: "bg-gradient-danger",
-          detail: "desde a última semana",
+          detail: "neste mês",
         },
         jobs: {
           title: "Procedimentos hoje",
-          value: "7",
-          percentage: "+4",
+          value: '...',
+          percentage: '...',
           iconClass: "ni ni-calendar-grid-58",
-          percentageColor: "text-success",
           iconBackground: "bg-gradient-success",
-          detail: "desde a última semana",
+          detail: "neste mês",
         },
-        return: {
+        returns: {
           title: "Retornos hoje",
-          value: "3",
-          percentage: "+5",
+          value: '...',
+          percentage: '...',
           iconClass: "ni ni-curved-next",
           iconBackground: "bg-gradient-warning",
-          detail: "desde a última semana",
+          detail: "neste mês",
+        },
+        records: {
+          title: "Clientes totais",
+          value: '...',
+          percentage: '...',
+          iconClass: "fa fa-plus",
+          detail: "neste mês",
+          iconBackground: "bg-gradient-primary",
         },
       },
       jobs_done: {
@@ -192,6 +194,39 @@ export default {
     GradientLineChart,
     Carousel,
     CategoriesCard,
+  },
+  created() {
+    fetch(process.env.VUE_APP_BACKEND + "Entrypoint.php")
+    .then(response => response.json())
+    .then(data => {
+      this.stats.costumers.value = data.costumers.today
+      this.stats.costumers.percentage = data.costumers.evolution
+      this.stats.costumers.percentageColor = "text-success"
+      if(this.stats.costumers.percentage < 0){
+        this.stats.costumers.percentageColor = "text-danger"
+      }
+
+      this.stats.jobs.value = data.jobs.today
+      this.stats.jobs.percentage = data.jobs.evolution
+      this.stats.jobs.percentageColor = "text-success"
+      if(this.stats.jobs.percentage < 0){
+        this.stats.jobs.percentageColor = "text-danger"
+      }
+
+      this.stats.returns.value = data.returns.today
+      this.stats.returns.percentage = data.returns.evolution
+      this.stats.returns.percentageColor = "text-success"
+      if(this.stats.returns.percentage < 0){
+        this.stats.returns.percentageColor = "text-danger"
+      }
+
+      this.stats.records.value = data.records.today
+      this.stats.records.percentage = data.records.evolution
+      this.stats.records.percentageColor = "text-success"
+      if(this.stats.records.percentage < 0){
+        this.stats.records.percentageColor = "text-danger"
+      }
+    });
   },
 };
 </script>
