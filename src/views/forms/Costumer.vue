@@ -20,11 +20,12 @@
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">CPF</label>
-										<argon-input type="number" />
+										<argon-input type="number" name="cpf" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Idade</label>
-										<argon-input type="number" />
+										<label for="example-text-input" class="form-control-label">Data de
+											nascimento</label>
+										<argon-input type="date" name="birth_date" />
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Telefone</label>
@@ -32,9 +33,9 @@
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Indicação?</label>
-										<select class="form-control">
-											<option value="N">Não</option>
-											<option value="S">Sim</option>
+										<select class="form-control" name="is_recommendation" :isRequired=true>
+											<option value="0">Não</option>
+											<option value="1">Sim</option>
 										</select>
 									</div>
 								</div>
@@ -67,7 +68,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label for="example-text-input" class="form-control-label">Observações</label>
-										<argon-input type="text" />
+										<argon-input type="text" name="note" />
 									</div>
 								</div>
 							</div>
@@ -86,11 +87,12 @@
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import AlertMixin from '../mixin/AlertMixin'
+import FormsMixin from '../mixin/FormsMixin'
 import axios from 'axios'
 
 export default {
 	name: "costumer",
-	mixins: [AlertMixin],
+	mixins: [AlertMixin, FormsMixin],
 	components: { ArgonInput, ArgonButton },
 	data() {
 		return {
@@ -118,15 +120,6 @@ export default {
 					});
 			}
 		},
-		getAllData(element) {
-			let formData = new FormData(element);
-			const data = {};
-
-			for (let [key, val] of formData.entries()) {
-				Object.assign(data, { [key]: val })
-			}
-			return data;
-		}
 	}
 };
 </script>
