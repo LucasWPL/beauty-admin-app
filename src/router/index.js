@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Schedules from "../views/Schedules.vue";
-import Tables from "../views/Tables.vue";
-import Billing from "../views/Billing.vue";
-import VirtualReality from "../views/VirtualReality.vue";
-import RTL from "../views/Rtl.vue";
-import Profile from "../views/Profile.vue";
+import Costumers from "../views/Costumers.vue";
+import CostumerForm from "../views/forms/Costumer.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
@@ -26,29 +23,14 @@ const routes = [
     component: Schedules,
   },
   {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
+    path: "/costumers",
+    name: "Clientes",
+    component: Costumers,
   },
   {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
-  },
-  {
-    path: "/virtual-reality",
-    name: "Virtual Reality",
-    component: VirtualReality,
-  },
-  {
-    path: "/rtl-page",
-    name: "RTL",
-    component: RTL,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: Profile,
+    path: "/new-costumer",
+    name: "Cadastro cliente",
+    component: CostumerForm,
   },
   {
     path: "/signin",

@@ -6,10 +6,8 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-                <th
-                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    v-for="(value, index) in this.values.thead" :key="index"
-                >{{ value }}</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                v-for="(value, index) in this.values.thead" :key="index">{{ value }}</th>
             </tr>
           </thead>
           <tbody>
@@ -35,14 +33,10 @@
 import DefaultHeader from "./parts/DefaultHeader.vue";
 
 export default {
-    name: "default-table",
-    props: ['values'],
-    components: {
-      DefaultHeader,
-    },
-    data() {
-      return {
-      };
-    }
+  name: "default-table",
+  props: ['values'],
+  components: {
+    DefaultHeader,
+  },
 };
 </script>
