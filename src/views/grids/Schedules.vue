@@ -5,16 +5,21 @@
         <default-table :values="defaultTableValues" />
       </div>
     </div>
+    <pagination :pages="pagination.totalOfPages" :current="pagination.currentPage" @change-page="changePage" />
   </div>
 </template>
 
 <script>
 import DefaultTable from "./../components/table/DefaultTable.vue";
+import Pagination from "./parts/Pagination.vue";
+import axios from 'axios'
+import moment from 'moment'
 
 export default {
   name: "tables",
   components: {
     DefaultTable,
+    Pagination,
   },
   data() {
     return {
@@ -32,40 +37,66 @@ export default {
           'Cliente',
           'Procedimentos',
           'Horário',
-          'Ações',
         ],
-        tbody: [
-          [
-            {
-              h6: "Cliente 01",
-              p1: "(84) 99957-9009",
-            },
-            {
-              p1: "Micropigmentação",
-            },
-            {
-              h6: "15:30",
-              p2: "Duração: 40 minutos",
-            },
-            {},
-          ],
-          [
-            {
-              h6: "Cliente 02",
-              p1: "(84) 99957-9009",
-            },
-            {
-              p1: "Micropigmentação",
-            },
-            {
-              h6: "15:30",
-              p2: "Duração: 40 minutos",
-            },
-            {},
-          ]
-        ],
+        tbody: []
+      },
+      pagination: {
+        maxInPage: 10,
+        currentPage: 1,
+        totalOfPages: 0
       },
     };
   },
+  created() {
+    this.generateTableValues();
+  },
+  methods: {
+    changePage(page) {
+      if (page == 0 || page > this.pagination.totalOfPages) {
+        return;
+      }
+
+      this.pagination.currentPage = page;
+      this.generateTableValues();
+    },
+    generateTableValues() {
+      this.getData()
+        .then(data => {
+
+          let list = [];
+
+          data.filtred.map(function (value) {
+            let listValue = [
+              {
+                h6: value.name,
+                p1: value.phone,
+              },
+              {
+                p1: "Lista de procedimentos",
+              },
+              {
+                h6: moment(value.time).format('DD/MM/YYYY hh:mm'),
+                p2: "Duração: -",
+              },
+            ];
+
+            list.push(listValue);
+          });
+
+          this.defaultTableValues.tbody = list;
+          this.pagination.totalOfPages = data.pages;
+        });
+    },
+    getData() {
+      return axios
+        .get(process.env.VUE_APP_BACKEND_URL + 'api/jobs', {
+          params: {
+            maxInPage: this.pagination.maxInPage,
+            currentPage: this.pagination.currentPage,
+          }
+        })
+        .then(response => response.data);
+    }
+  }
 };
 </script>
