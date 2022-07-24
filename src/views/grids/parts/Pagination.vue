@@ -1,10 +1,10 @@
 <template>
     <div>
         <argon-pagination size="md">
-            <argon-pagination-item prev />
+            <argon-pagination-item prev @click="$emit('change-page', this.current - 1)" />
             <argon-pagination-item v-for="n in this.pages" :key="n" v-bind:label="n" v-bind:active="n == this.current"
                 @click="$emit('change-page', n)" />
-            <argon-pagination-item next />
+            <argon-pagination-item next @click="$emit('change-page', this.current + 1)" />
         </argon-pagination>
     </div>
 </template>

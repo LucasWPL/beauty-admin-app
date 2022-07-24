@@ -33,9 +33,10 @@ export default {
 					}
 				},
 				thead: [
+					'ID',
 					'Cliente',
+					'Telefone',
 					'Agendamentos futuros',
-					'Ações',
 				],
 				tbody: [
 				]
@@ -52,6 +53,10 @@ export default {
 	},
 	methods: {
 		changePage(page) {
+			if (page == 0 || page > this.pagination.totalOfPages) {
+				return;
+			}
+
 			this.pagination.currentPage = page;
 			this.generateTableValues();
 		},
@@ -64,13 +69,17 @@ export default {
 					data.filtred.map(function (value) {
 						let listValue = [
 							{
+								p1: value.id,
+							},
+							{
 								h6: value.name,
+							},
+							{
 								p1: value.phone,
 							},
 							{
 								p1: '...',
 							},
-							{}
 						];
 
 						list.push(listValue);

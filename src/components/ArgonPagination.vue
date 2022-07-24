@@ -1,5 +1,5 @@
 <template>
-  <ul class="pagination" :class="getClasses(color, size)">
+  <ul class="pagination mt-2" :class="getClasses(color, size)">
     <slot />
   </ul>
 </template>
