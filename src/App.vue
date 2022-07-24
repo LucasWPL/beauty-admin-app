@@ -62,3 +62,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.select2-container--default .select2-selection--single {
+  border: none !important;
+}
+</style>

@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
-import Schedules from "../views/Schedules.vue";
+import Schedules from "../views/grids/Schedules.vue";
 import Costumers from "../views/grids/Costumers.vue";
 import CostumerForm from "../views/forms/Costumer.vue";
+import ScheduleForm from "../views/forms/Schedule.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
@@ -31,6 +32,11 @@ const routes = [
     path: "/new-costumer",
     name: "Cadastro cliente",
     component: CostumerForm,
+  },
+  {
+    path: "/new-schedule",
+    name: "Cadastro agendamento",
+    component: ScheduleForm,
   },
   {
     path: "/signin",
