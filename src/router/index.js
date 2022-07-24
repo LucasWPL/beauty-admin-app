@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Schedules from "../views/Schedules.vue";
-import Costumers from "../views/Costumers.vue";
+import Costumers from "../views/grids/Costumers.vue";
 import CostumerForm from "../views/forms/Costumer.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
