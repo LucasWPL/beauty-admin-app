@@ -20,7 +20,7 @@
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">CPF</label>
-										<argon-input type="number" name="cpf" />
+										<argon-input type="text" name="cpf" :mask="'###.###.###-##'" />
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Data de
@@ -29,7 +29,8 @@
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Telefone</label>
-										<argon-input type="text" name="phone" :isRequired=true />
+										<argon-input type="text" name="phone" :isRequired=true
+											:mask="['+55 (##) ####-####', '+55 (##) #####-####']" />
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Indicação?</label>
@@ -48,7 +49,7 @@
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">CEP</label>
-										<argon-input type="text" />
+										<argon-input type="text" :mask="'#####-###'" />
 									</div>
 									<div class="col-md-4">
 										<label for="example-text-input" class="form-control-label">Cidade</label>

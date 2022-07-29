@@ -5,7 +5,7 @@
         <i :class="getIcon(icon)"></i>
       </span>
       <input :type="type" class="form-control" :class="getClasses(size, valid)" :name="name" :id="id" :value="value"
-        :placeholder="placeholder" :required="isRequired" />
+        :placeholder="placeholder" :required="isRequired" v-maska="mask" />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
       </span>
@@ -17,6 +17,9 @@
 export default {
   name: "argon-input",
   props: {
+    mask: {
+      default: '',
+    },
     size: {
       type: String,
       default: "default",
