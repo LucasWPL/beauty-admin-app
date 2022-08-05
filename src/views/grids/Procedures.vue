@@ -1,0 +1,103 @@
+<template>
+    <div class="py-4 container-fluid">
+        <div class=" row">
+            <div class="col-12">
+                <default-table :values="defaultTableValues" />
+            </div>
+        </div>
+        <pagination :pages="pagination.totalOfPages" :current="pagination.currentPage" @change-page="changePage" />
+    </div>
+</template>
+
+<script>
+import DefaultTable from "./../components/table/DefaultTable.vue";
+import Pagination from "./parts/Pagination.vue";
+import axios from 'axios'
+
+export default {
+    name: "tables",
+    components: {
+        DefaultTable,
+        Pagination,
+    },
+    data() {
+        return {
+            defaultTableValues: {
+                header: {
+                    title: "Lista de procedimentos",
+                    action: {
+                        color: 'info',
+                        iconClass: 'fas fa-plus me-2',
+                        text: 'Novo procedimento',
+                        url: '/new-procedure',
+                    }
+                },
+                thead: [
+                    'Nome',
+                    'Dificuldade',
+                    'Duração média',
+                    'Valor',
+                ],
+                tbody: []
+            },
+            pagination: {
+                maxInPage: 10,
+                currentPage: 1,
+                totalOfPages: 0
+            },
+        };
+    },
+    created() {
+        this.generateTableValues();
+    },
+    methods: {
+        changePage(page) {
+            if (page == 0 || page > this.pagination.totalOfPages) {
+                return;
+            }
+
+            this.pagination.currentPage = page;
+            this.generateTableValues();
+        },
+        generateTableValues() {
+            this.getData()
+                .then(data => {
+
+                    let list = [];
+
+                    data.filtred.map(function (value) {
+                        let listValue = [
+                            {
+                                h6: value.name,
+                            },
+                            {
+                                p1: value.dificulty,
+                            },
+                            {
+                                p1: value.duration,
+                            },
+                            {
+                                p1: value.value,
+                            },
+                        ];
+
+                        list.push(listValue);
+                    });
+
+                    this.defaultTableValues.tbody = list;
+                    this.pagination.totalOfPages = data.pages;
+                });
+        },
+        getData() {
+            return axios
+                .get(process.env.VUE_APP_BACKEND_URL + 'api/procedures', {
+                    params: {
+                        maxInPage: this.pagination.maxInPage,
+                        currentPage: this.pagination.currentPage,
+                    }
+                })
+                .then(response => response.data);
+        }
+    }
+};
+</script>

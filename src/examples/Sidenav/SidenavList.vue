@@ -22,6 +22,13 @@
           </template>
         </sidenav-item>
       </li>
+      <li class="nav-item">
+        <sidenav-item url="/procedures" :class="getRoute() === 'procedures' ? 'active' : ''" :navText="'Procedimentos'">
+          <template v-slot:icon>
+            <i class="ni ni-bullet-list-67 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
     </ul>
   </div>
   <div class="pt-3 mx-3 mt-3 sidenav-footer">

@@ -15,25 +15,25 @@
 								<p class="text-uppercase text-sm">Informações pessoais</p>
 								<div class="row">
 									<div class="col-md-8">
-										<label for="example-text-input" class="form-control-label">Nome</label>
+										<label class="form-control-label">Nome</label>
 										<argon-input type="text" name="name" :isRequired=true />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">CPF</label>
+										<label class="form-control-label">CPF</label>
 										<argon-input type="text" name="cpf" :mask="'###.###.###-##'" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Data de
+										<label class="form-control-label">Data de
 											nascimento</label>
 										<argon-input type="date" name="birth_date" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Telefone</label>
+										<label class="form-control-label">Telefone</label>
 										<argon-input type="text" name="phone" :isRequired=true
-											:mask="['+55 (##) ####-####', '+55 (##) #####-####']" />
+											:mask="['(##) ####-####', '(##) #####-####']" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Indicação?</label>
+										<label class="form-control-label">Indicação?</label>
 										<select class="form-control" name="is_recommendation" :isRequired=true>
 											<option value="0">Não</option>
 											<option value="1">Sim</option>
@@ -44,31 +44,32 @@
 								<p class="text-uppercase text-sm">Dados para contato</p>
 								<div class="row">
 									<div class="col-md-8">
-										<label for="example-text-input" class="form-control-label">Endereço</label>
-										<argon-input type="text" placeholder="Rua, número da casa, bairro..." />
+										<label class="form-control-label">Endereço</label>
+										<argon-input type="text" name="addressDetail"
+											placeholder="Rua, número da casa, bairro..." />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">CEP</label>
-										<argon-input type="text" :mask="'#####-###'" />
+										<label class="form-control-label">CEP</label>
+										<argon-input type="text" name="CEP" :mask="'#####-###'" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Cidade</label>
-										<argon-input type="text" />
+										<label class="form-control-label">Cidade</label>
+										<argon-input type="text" name="city" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">Estado</label>
-										<argon-input type="text" />
+										<label class="form-control-label">Estado</label>
+										<argon-input type="text" name="state" />
 									</div>
 									<div class="col-md-4">
-										<label for="example-text-input" class="form-control-label">País</label>
-										<argon-input type="text" />
+										<label class="form-control-label">País</label>
+										<argon-input type="text" name="country" />
 									</div>
 								</div>
 								<hr class="horizontal dark" />
 								<p class="text-uppercase text-sm">Observações</p>
 								<div class="row">
 									<div class="col-md-12">
-										<label for="example-text-input" class="form-control-label">Observações</label>
+										<label class="form-control-label">Observações</label>
 										<argon-input type="text" name="note" />
 									</div>
 								</div>

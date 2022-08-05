@@ -67,4 +67,8 @@ export default {
 .select2-container--default .select2-selection--single {
   border: none !important;
 }
+
+.fake-label {
+  color: transparent;
+}
 </style>

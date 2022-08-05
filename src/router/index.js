@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Schedules from "../views/grids/Schedules.vue";
+import Procedures from "../views/grids/Procedures.vue";
 import Costumers from "../views/grids/Costumers.vue";
 import CostumerForm from "../views/forms/Costumer.vue";
 import ScheduleForm from "../views/forms/Schedule.vue";
@@ -22,6 +23,11 @@ const routes = [
     path: "/schedules",
     name: "Agendamentos",
     component: Schedules,
+  },
+  {
+    path: "/procedures",
+    name: "Procedimentos",
+    component: Procedures,
   },
   {
     path: "/costumers",
