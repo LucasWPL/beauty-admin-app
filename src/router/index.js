@@ -4,6 +4,7 @@ import Schedules from "../views/grids/Schedules.vue";
 import Procedures from "../views/grids/Procedures.vue";
 import Costumers from "../views/grids/Costumers.vue";
 import CostumerForm from "../views/forms/Costumer.vue";
+import ProcedureForm from "../views/forms/Procedure.vue";
 import ScheduleForm from "../views/forms/Schedule.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
@@ -28,6 +29,11 @@ const routes = [
     path: "/procedures",
     name: "Procedimentos",
     component: Procedures,
+  },
+  {
+    path: "/new-procedure",
+    name: "Cadastro procedimento",
+    component: ProcedureForm,
   },
   {
     path: "/costumers",

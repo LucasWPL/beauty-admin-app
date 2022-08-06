@@ -12,10 +12,12 @@
 <script>
 import DefaultTable from "./../components/table/DefaultTable.vue";
 import Pagination from "./parts/Pagination.vue";
+import FormatterMixin from '../mixin/FormatterMixin';
 import axios from 'axios'
 
 export default {
     name: "tables",
+    mixins: [FormatterMixin],
     components: {
         DefaultTable,
         Pagination,
@@ -65,19 +67,19 @@ export default {
 
                     let list = [];
 
-                    data.filtred.map(function (value) {
+                    data.filtred.map((value) => {
                         let listValue = [
                             {
-                                h6: value.name,
+                                h6: value.description,
                             },
                             {
-                                p1: value.dificulty,
+                                p1: this.ucFirst(value.dificulty),
                             },
                             {
-                                p1: value.duration,
+                                p1: this.convertToHoursMins(value.duration),
                             },
                             {
-                                p1: value.value,
+                                p1: this.makeCoin(value.value),
                             },
                         ];
 
