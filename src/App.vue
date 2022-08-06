@@ -71,4 +71,8 @@ export default {
 .fake-label {
   color: transparent;
 }
+
+.buttonGrid {
+  margin: 4px !important;
+}
 </style>

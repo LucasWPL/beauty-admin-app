@@ -26,12 +26,6 @@ export default {
       defaultTableValues: {
         header: {
           title: "Procedimentos agendados",
-          action: {
-            color: 'info',
-            iconClass: 'fas fa-plus me-2',
-            text: 'Novo agendamento',
-            url: '/new-schedule',
-          }
         },
         thead: [
           'Cliente',

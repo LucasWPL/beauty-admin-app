@@ -13,6 +13,29 @@
         </router-link>
       </div>
     </div>
+    <div class="row">
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fas fa-plus'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-pencil'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-check'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-list'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-print'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-trash'" aria-hidden="true"></i>
+      </div>
+      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md buttonGrid">
+        <i class="opacity-10" :class="'fa fa-refresh'" aria-hidden="true"></i>
+      </div>
+    </div>
   </div>
 </template>
 

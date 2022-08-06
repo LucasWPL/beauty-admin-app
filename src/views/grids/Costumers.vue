@@ -25,12 +25,6 @@ export default {
 			defaultTableValues: {
 				header: {
 					title: "Clientes",
-					action: {
-						color: 'info',
-						iconClass: 'fas fa-plus me-2',
-						text: 'Cadastrar cliente',
-						url: '/new-costumer',
-					}
 				},
 				thead: [
 					'ID',

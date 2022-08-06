@@ -27,12 +27,6 @@ export default {
             defaultTableValues: {
                 header: {
                     title: "Lista de procedimentos",
-                    action: {
-                        color: 'info',
-                        iconClass: 'fas fa-plus me-2',
-                        text: 'Novo procedimento',
-                        url: '/new-procedure',
-                    }
                 },
                 thead: [
                     'Nome',
