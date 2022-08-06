@@ -107,12 +107,11 @@ export default {
                 .then((response) => {
                     let procedure = response.data[0];
 
+                    this.procedure.procedure_id = procedure.id;
                     this.procedure.description = procedure.description;
                     this.procedure.dificulty = procedure.dificulty;
                     this.procedure.duration = this.convertToHoursMins(procedure.duration.toString());
                     this.procedure.value = this.makeCoin(procedure.value.toString());
-
-                    console.log(this.procedure);
                 })
                 .catch(() => {
                     this.Toast('error', 'Houve um problema ao tentar carregar o procedimento, tente novamente');
@@ -122,6 +121,7 @@ export default {
             this.procedureList.push({
                 description: this.procedure.description,
                 dificulty: this.procedure.dificulty,
+                procedure_id: this.procedure.procedure_id,
                 duration: this.elementValue('duration'),
                 value: this.elementValue('value'),
             });
@@ -129,12 +129,12 @@ export default {
         deleteProcedure(index) {
             this.procedureList.splice(index, 1)
         },
-        onSubmit: function () {
+        onSubmit() {
             let myForm = document.getElementById('formShedule');
             let isFormValid = myForm.checkValidity();
             let data = this.getAllData(myForm);
 
-            console.log(data);
+            data.procedureList = this.procedureList;
 
             if (!isFormValid) {
                 myForm.reportValidity();
