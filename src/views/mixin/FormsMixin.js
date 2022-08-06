@@ -29,6 +29,15 @@ const formsMixin = {
         }
     },
     methods: {
+        elementValue(id) {
+            return document.getElementById(id).value;
+        },
+        cleanElements(elements) {
+            elements = [].concat(elements);
+            elements.forEach((value) => {
+                document.getElementById(value).value = '';
+            });
+        },
         getAllData(element) {
             let formData = new FormData(element);
             const data = {};
@@ -45,7 +54,7 @@ const formsMixin = {
                     let list = [];
 
                     response.data.map(function (value) {
-                        let listValue = { id: value.id, text: value.name };
+                        let listValue = { id: value.id, text: value.description };
 
                         list.push(listValue);
                     });

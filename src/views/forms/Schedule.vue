@@ -37,11 +37,13 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-control-label">Duração</label>
-                                        <argon-input type="number" id="duration" />
+                                        <argon-input type="text" id="duration" :mask="this.maskHourAndMinutes"
+                                            :value="this.procedure.duration" />
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-control-label">Valor</label>
-                                        <argon-input type="text" id="value" />
+                                        <argon-input type="text" id="value" :mask="this.maskCoin"
+                                            :value="procedure.value" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="fake-label">.</label>
@@ -67,24 +69,31 @@
 </template>
 
 <script>
+
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import AlertMixin from '../mixin/AlertMixin'
 import FormsMixin from '../mixin/FormsMixin'
+import FormatterMixin from '../mixin/FormatterMixin'
 import axios from 'axios'
 import Select2 from 'vue3-select2-component';
 import ProcedureCardList from "./parts/ProcedureCardList.vue";
 
 export default {
     name: "costumer",
-    mixins: [AlertMixin, FormsMixin],
+    mixins: [AlertMixin, FormsMixin, FormatterMixin],
     components: { ArgonInput, ArgonButton, Select2, ProcedureCardList },
     data() {
         return {
             formAction: process.env.VUE_APP_BACKEND_URL + 'api/jobs',
-            allCostumers: [],
+            procedure: {
+                description: '',
+                duration: '',
+                value: '',
+            },
             allProcedures: [],
-            procedureList: []
+            procedureList: [],
+            allCostumers: [],
         }
     },
     created() {
@@ -93,12 +102,29 @@ export default {
     },
     methods: {
         setProcedureValuesFromId(id) {
-            // todo
-            console.log(id);
+            axios
+                .get(process.env.VUE_APP_BACKEND_URL + 'api/procedures/' + id)
+                .then((response) => {
+                    let procedure = response.data[0];
+
+                    this.procedure.description = procedure.description;
+                    this.procedure.dificulty = procedure.dificulty;
+                    this.procedure.duration = this.convertToHoursMins(procedure.duration.toString());
+                    this.procedure.value = this.makeCoin(procedure.value.toString());
+
+                    console.log(this.procedure);
+                })
+                .catch(() => {
+                    this.Toast('error', 'Houve um problema ao tentar carregar o procedimento, tente novamente');
+                });
         },
         addProcedure() {
-            // todo
-            this.procedureList.push({});
+            this.procedureList.push({
+                description: this.procedure.description,
+                dificulty: this.procedure.dificulty,
+                duration: this.elementValue('duration'),
+                value: this.elementValue('value'),
+            });
         },
         deleteProcedure(index) {
             this.procedureList.splice(index, 1)

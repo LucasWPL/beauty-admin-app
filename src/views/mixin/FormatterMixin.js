@@ -5,7 +5,7 @@ const formatterMixin = {
     },
     methods: {
         makeCoin(value) {
-            return 'R$ ' + new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(value);
+            return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(value);
         },
         convertToHoursMins(value) {
             let hours = parseInt(value / 60);
