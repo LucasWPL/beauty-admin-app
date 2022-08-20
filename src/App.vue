@@ -72,7 +72,12 @@ export default {
   color: transparent;
 }
 
-.buttonGrid {
+.button-grid {
   margin: 4px !important;
+  cursor: pointer;
+}
+
+.button-grid:hover {
+  background-color: #123052 !important;
 }
 </style>
