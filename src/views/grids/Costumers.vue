@@ -51,12 +51,12 @@ export default {
 						link: ''
 					},
 					{
-						icon: 'fas fa-times',
+						icon: 'fas fa-delete-left',
 						hoverClass: '',
 						link: ''
 					},
 					{
-						icon: 'fas fa-retweet',
+						icon: 'fas fa-arrows-rotate',
 						hoverClass: '',
 						link: ''
 					},
