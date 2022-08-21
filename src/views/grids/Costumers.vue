@@ -33,6 +33,33 @@ export default {
 					'Agendamentos futuros',
 				],
 				tbody: [
+				],
+				buttons: [
+					{
+						icon: 'fas fa-plus',
+						hoverClass: '',
+						link: 'new-costumer'
+					},
+					{
+						icon: 'fas fa-edit',
+						hoverClass: '',
+						link: ''
+					},
+					{
+						icon: 'fas fa-print',
+						hoverClass: '',
+						link: ''
+					},
+					{
+						icon: 'fas fa-times',
+						hoverClass: '',
+						link: ''
+					},
+					{
+						icon: 'fas fa-retweet',
+						hoverClass: '',
+						link: ''
+					},
 				]
 			},
 			pagination: {

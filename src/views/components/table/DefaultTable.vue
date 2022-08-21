@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <default-header :title="this.values.header.title" :action="this.values.header.action" />
+    <default-header :title="this.values.header.title" :buttons="this.values.buttons" />
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">

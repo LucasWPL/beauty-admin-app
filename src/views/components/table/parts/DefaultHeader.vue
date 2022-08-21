@@ -4,34 +4,25 @@
       <div class="col-6 d-flex align-items-center">
         <h6>{{ this.title }}</h6>
       </div>
-      <div class="col-6 text-end" v-if="this.action">
-        <router-link :to="this.action.url">
-          <argon-button :color="this.action.color" variant="gradient">
-            <i :class="this.action.iconClass"></i>
-            {{ this.action.text }}
-          </argon-button>
-        </router-link>
+      <div class="col-6 text-end">
       </div>
     </div>
     <div class="row">
-      <div :class="'bg-info'" class="icon icon-shape icon-md shadow text-center border-radius-md button-grid">
-        <i class="opacity-10" :class="'fas fa-plus'" aria-hidden="true"></i>
+      <div class="icon icon-shape icon-md shadow text-center border-radius-md button-grid bg-info"
+        :class="button.hoverClass" v-for="button, index in this.buttons" :key="index"
+        @click="this.$router.push(button.link)">
+        <i class="opacity-10" :class="button.icon" aria-hidden="true"></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ArgonButton from "@/components/ArgonButton.vue";
-
 export default {
   name: "default-header",
   props: [
     'title',
-    'action'
+    'buttons'
   ],
-  components: {
-    ArgonButton,
-  }
 };
 </script>
