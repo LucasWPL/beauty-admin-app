@@ -8,7 +8,10 @@
 							<div class="card-header pb-0">
 								<div class="d-flex align-items-center">
 									<p class="mb-0">Cadastro cliente</p>
-									<argon-button color="success" size="sm" class="ms-auto">Salvar</argon-button>
+									<argon-button color="danger" size="sm" class="ms-auto" style="margin-right: 5px"
+										@click="$router.back()">
+										Voltar</argon-button>
+									<argon-button color="success" size="sm" class="">Salvar</argon-button>
 								</div>
 							</div>
 							<div class="card-body">

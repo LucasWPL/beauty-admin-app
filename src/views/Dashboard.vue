@@ -211,9 +211,6 @@ export default {
 					this.stats.records.percentageColor = "text-danger"
 				}
 			});
-	},
-	created() {
-		axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 	}
 };
 </script>

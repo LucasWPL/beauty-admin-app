@@ -2,7 +2,7 @@
 	<div class="py-4 container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<default-table :values="defaultTableValues" />
+				<default-table :values="defaultTableValues" @reload-values="generateTableValues" />
 			</div>
 		</div>
 		<pagination :pages="pagination.totalOfPages" :current="pagination.currentPage" @change-page="changePage" />
@@ -37,28 +37,20 @@ export default {
 				buttons: [
 					{
 						icon: 'fas fa-plus',
-						hoverClass: '',
 						link: 'new-costumer'
 					},
 					{
 						icon: 'fas fa-edit',
-						hoverClass: '',
-						link: ''
 					},
 					{
 						icon: 'fas fa-print',
-						hoverClass: '',
-						link: ''
 					},
 					{
 						icon: 'fas fa-delete-left',
-						hoverClass: '',
-						link: ''
 					},
 					{
 						icon: 'fas fa-arrows-rotate',
-						hoverClass: '',
-						link: ''
+						reloadPage: true
 					},
 				]
 			},

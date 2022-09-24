@@ -6,6 +6,7 @@ import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
 import ArgonDashboard from "./argon-dashboard";
 import Maska from "maska";
+import axios from 'axios'
 
 function loggedIn() {
     return localStorage.getItem('accessToken');
@@ -22,6 +23,7 @@ router.beforeEach((to, from, next) => {
             })
         } else {
             next()
+            axios.defaults.headers.common['Authorization'] = `Bearer ${loggedIn()}`
         }
     }
 })

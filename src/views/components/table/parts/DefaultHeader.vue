@@ -9,8 +9,7 @@
     </div>
     <div class="row">
       <div class="icon icon-shape icon-md shadow text-center border-radius-md button-grid bg-info"
-        :class="button.hoverClass" v-for="button, index in this.buttons" :key="index"
-        @click="this.$router.push(button.link)">
+        :class="button.hoverClass" v-for="button, index in this.buttons" :key="index" @click="getClickFunction(button)">
         <i class="opacity-10" :class="button.icon" aria-hidden="true"></i>
       </div>
     </div>
@@ -24,5 +23,17 @@ export default {
     'title',
     'buttons'
   ],
+  methods: {
+    getClickFunction(buttonInfo) {
+      if (buttonInfo.link) {
+        return this.$router.push(buttonInfo.link);
+      }
+      if (buttonInfo.reloadPage) {
+        return this.$router.go();
+      }
+
+      return;
+    }
+  }
 };
 </script>
