@@ -108,6 +108,7 @@ export default {
 	name: "dashboard",
 	data() {
 		return {
+			token: localStorage.getItem('accessToken'),
 			stats: {
 				costumers: {
 					title: "Clientes hoje",
@@ -176,7 +177,7 @@ export default {
 		Carousel,
 		CategoriesCard,
 	},
-	created() {
+	mounted() {
 		axios
 			.get(process.env.VUE_APP_BACKEND_URL + 'api/dashboard')
 			.then(response => {
@@ -211,5 +212,8 @@ export default {
 				}
 			});
 	},
+	created() {
+		axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
+	}
 };
 </script>

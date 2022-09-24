@@ -1,15 +1,4 @@
 <template>
-  <div class="container top-0 position-sticky z-index-sticky">
-    <div class="row">
-      <div class="col-12">
-        <navbar
-          isBlur="blur  border-radius-lg my-3 py-2 start-0 end-0 mx-4 shadow"
-          v-bind:darkMode="true"
-          isBtn="bg-gradient-success"
-        />
-      </div>
-    </div>
-  </div>
   <main class="mt-0 main-content">
     <section>
       <div class="page-header min-vh-100">
@@ -18,56 +7,44 @@
             <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0">
               <div class="card card-plain">
                 <div class="pb-0 card-header text-start">
-                  <h4 class="font-weight-bolder">Sign In</h4>
-                  <p class="mb-0">Enter your email and password to sign in</p>
+                  <h4 class="font-weight-bolder">Login</h4>
+                  <p class="mb-0">Insira o seu e-mail e senha para entrar</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" id="formLogin" v-on:submit.prevent="onSubmit">
                     <div class="mb-3">
-                      <argon-input type="email" placeholder="Email" name="email" size="lg" />
+                      <argon-input type="email" placeholder="Email" name="email" size="lg" :isRequired=true />
                     </div>
                     <div class="mb-3">
-                      <argon-input type="password" placeholder="Password" name="password" size="lg" />
+                      <argon-input type="password" placeholder="Password" name="password" size="lg" :isRequired=true />
                     </div>
-                    <argon-switch id="rememberMe">Remember me</argon-switch>
+                    <argon-switch id="rememberMe">Me mantenha conectado</argon-switch>
 
                     <div class="text-center">
-                      <argon-button
-                        class="mt-4"
-                        variant="gradient"
-                        color="success"
-                        fullWidth
-                        size="lg"
-                      >Sign in</argon-button>
+                      <argon-button class="mt-4" variant="gradient" color="success" fullWidth size="lg">Login
+                      </argon-button>
                     </div>
+                    <input name="device_name" value="browser" type="hidden">
                   </form>
                 </div>
                 <div class="px-1 pt-0 text-center card-footer px-lg-2">
                   <p class="mx-auto mb-4 text-sm">
-                    Don't have an account?
-                    <a
-                      href="javascript:;"
-                      class="text-success text-gradient font-weight-bold"
-                    >Sign up</a>
+                    Esqueceu sua senha?
+                    <a href="javascript:;" class="text-success text-gradient font-weight-bold">Recuperar senha</a>
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="top-0 my-auto text-center col-6 d-lg-flex d-none h-100 pe-0 position-absolute end-0 justify-content-center flex-column"
-            >
+              class="top-0 my-auto text-center col-6 d-lg-flex d-none h-100 pe-0 position-absolute end-0 justify-content-center flex-column">
               <div
                 class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
-          background-size: cover;"
-              >
-                <span class="mask bg-gradient-success opacity-6"></span>
-                <h4
-                  class="mt-5 text-white font-weight-bolder position-relative"
-                >"Attention is the new currency"</h4>
-                <p
-                  class="text-white position-relative"
-                >The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+                style="background-image: url('https://www.datocms-assets.com/46127/1618962601-latisse-banner.jpg?auto=format,compress&w=1440');
+          background-size: cover;">
+                <span class="mask bg-gradient-info opacity-6
+                "></span>
+                <h2 class="mt-5 text-white font-weight-bolder position-relative">Seja bem vindo (a)</h2>
+                <p class="text-white position-relative">Um novo conceito de administrar o seu espaço</p>
               </div>
             </div>
           </div>
@@ -78,16 +55,19 @@
 </template>
 
 <script>
-import Navbar from "@/examples/PageLayout/Navbar.vue";
+const body = document.getElementsByTagName("body")[0];
+
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonSwitch from "@/components/ArgonSwitch.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
-const body = document.getElementsByTagName("body")[0];
+import FormsMixin from './mixin/FormsMixin'
+import AlertMixin from './mixin/AlertMixin'
+import axios from 'axios'
 
 export default {
   name: "signin",
+  mixins: [AlertMixin, FormsMixin],
   components: {
-    Navbar,
     ArgonInput,
     ArgonSwitch,
     ArgonButton,
@@ -106,5 +86,26 @@ export default {
     this.$store.state.showFooter = true;
     body.classList.add("bg-gray-100");
   },
+  methods: {
+    onSubmit: function () {
+      let myForm = document.getElementById('formLogin');
+      let isFormValid = myForm.checkValidity();
+      let data = this.getAllData(myForm);
+
+      if (!isFormValid) {
+        myForm.reportValidity();
+      } else {
+        axios
+          .post(process.env.VUE_APP_BACKEND_URL + 'api/login', data)
+          .then((response) => {
+            localStorage.setItem('accessToken', response.data);
+            this.$router.push('dashboard');
+          })
+          .catch(() => {
+            this.Toast('error', 'Login ou senha inválido, tente novamente');
+          });
+      }
+    },
+  }
 };
 </script>

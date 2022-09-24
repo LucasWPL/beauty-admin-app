@@ -54,11 +54,13 @@ const routes = [
     path: "/signin",
     name: "Signin",
     component: Signin,
+    meta: { guest: true }
   },
   {
     path: "/signup",
     name: "Signup",
     component: Signup,
+    meta: { guest: true }
   },
 ];
 

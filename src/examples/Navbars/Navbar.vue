@@ -15,20 +15,11 @@
               <i class="cursor-pointer fa fa-cog fixed-plugin-button-nav"></i>
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center">
-            <router-link :to="{ name: 'Signin' }" class="px-0 nav-link font-weight-bold text-white" target="_blank">
-              <i class="fa fa-user me-sm-2"></i>
+          <li class="nav-item d-flex align-items-center" style="cursor:pointer">
+            <div @click="logout()" class="px-0 nav-link font-weight-bold text-white">
+              <i class="fa-solid fa-right-to-bracket me-sm-2"></i>
               <span class="d-sm-inline d-none">Sair</span>
-            </router-link>
-          </li>
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="#" @click="toggleSidebar" class="p-0 nav-link text-white" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-              </div>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -38,9 +29,12 @@
 <script>
 import Breadcrumbs from "../Breadcrumbs.vue";
 import { mapMutations, mapActions } from "vuex";
+import AlertMixin from '../../views/mixin/AlertMixin'
+import axios from 'axios';
 
 export default {
   name: "navbar",
+  mixins: [AlertMixin],
   data() {
     return {
       showMenu: false
@@ -57,6 +51,18 @@ export default {
     toggleSidebar() {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
+    },
+    logout() {
+      axios
+        .post(process.env.VUE_APP_BACKEND_URL + 'api/logout')
+        .then(() => {
+          this.Toast('success', 'Até logo');
+          localStorage.removeItem('accessToken');
+          this.$router.push('signin');
+        })
+        .catch(() => {
+          this.Toast('error', 'Houve um erro ao tentar sair do sistema');
+        });
     }
   },
   components: {
