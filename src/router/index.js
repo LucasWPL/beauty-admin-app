@@ -31,7 +31,7 @@ const routes = [
     component: Procedures,
   },
   {
-    path: "/new-procedure",
+    path: "/add-procedure",
     name: "Cadastro procedimento",
     component: ProcedureForm,
   },
@@ -41,12 +41,17 @@ const routes = [
     component: Costumers,
   },
   {
-    path: "/new-costumer",
+    path: "/add-costumer",
     name: "Cadastro cliente",
     component: CostumerForm,
   },
   {
-    path: "/new-schedule",
+    path: "/edit-costumer",
+    name: "Edição cliente",
+    component: CostumerForm,
+  },
+  {
+    path: "/add-schedule",
     name: "Cadastro agendamento",
     component: ScheduleForm,
   },

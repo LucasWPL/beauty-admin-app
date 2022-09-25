@@ -35,10 +35,8 @@ export default {
                     'Valor',
                 ],
                 tbody: [],
-                config: {
-                    checkbox: {
-                        allowed: false,
-                    }
+                checkbox: {
+                    allowed: false,
                 }
             },
             pagination: {

@@ -1,22 +1,23 @@
 <template>
   <div class="card">
-    <default-header :title="this.values.header.title" :buttons="this.values.buttons" />
+    <default-header :title="this.values.header.title" :buttons="this.values.buttons"
+      :selectedValues="this.values.checkbox.selected" />
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th v-if="this.values.config.checkbox.allowed" class="grid-checkbox-th"></th>
+              <th v-if="this.values.checkbox.allowed" class="grid-checkbox-th"></th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 v-for="(value, index) in this.values.thead" :key="index">{{ value }}</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(tds, index) in this.values.tbody" :key="index">
-              <td v-if="this.values.config.checkbox.allowed">
+              <td v-if="this.values.checkbox.allowed">
                 <div class="div-align-center">
                   <input type="checkbox" class="grid-checkbox"
-                    :value="tds[this.values.config.checkbox.index][this.values.config.checkbox.type]">
+                    @click="changeSelected(tds[this.values.checkbox.index][this.values.checkbox.type])">
                 </div>
               </td>
               <td v-for="(td, indexTd) in tds" :key="indexTd">
@@ -45,5 +46,16 @@ export default {
   components: {
     DefaultHeader,
   },
+  methods: {
+    changeSelected(value) {
+      let list = this.values.checkbox.selected;
+      if (list.includes(value)) {
+        list.pop(value);
+        return;
+      }
+
+      list.push(value);
+    }
+  }
 };
 </script>

@@ -37,28 +37,33 @@ export default {
 				buttons: [
 					{
 						icon: 'fas fa-plus',
-						link: 'new-costumer'
+						link: 'add-costumer',
+						title: 'Adicionar',
 					},
 					{
 						icon: 'fas fa-edit',
+						link: 'edit-costumer',
+						title: 'Editar',
 					},
 					{
 						icon: 'fas fa-print',
+						title: 'Imprimir',
 					},
 					{
 						icon: 'fas fa-delete-left',
+						title: 'Deletar',
 					},
 					{
 						icon: 'fas fa-arrows-rotate',
-						reloadPage: true
+						reloadPage: true,
+						title: 'Recarregar',
 					},
 				],
-				config: {
-					checkbox: {
-						allowed: true,
-						index: 0,
-						type: 'p1'
-					}
+				checkbox: {
+					allowed: true,
+					index: 0,
+					type: 'p1',
+					selected: []
 				}
 			},
 			pagination: {
