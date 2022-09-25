@@ -32,7 +32,12 @@ export default {
           'Procedimentos',
           'Horário',
         ],
-        tbody: []
+        tbody: [],
+        config: {
+          checkbox: {
+            allowed: false,
+          }
+        }
       },
       pagination: {
         maxInPage: 10,

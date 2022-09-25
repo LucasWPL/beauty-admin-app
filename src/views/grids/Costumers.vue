@@ -52,7 +52,14 @@ export default {
 						icon: 'fas fa-arrows-rotate',
 						reloadPage: true
 					},
-				]
+				],
+				config: {
+					checkbox: {
+						allowed: true,
+						index: 0,
+						type: 'p1'
+					}
+				}
 			},
 			pagination: {
 				maxInPage: 10,
@@ -76,7 +83,6 @@ export default {
 		generateTableValues() {
 			this.getData()
 				.then(data => {
-
 					let list = [];
 
 					data.filtred.map(function (value) {

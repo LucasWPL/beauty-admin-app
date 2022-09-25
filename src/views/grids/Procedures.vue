@@ -34,7 +34,12 @@ export default {
                     'Duração média',
                     'Valor',
                 ],
-                tbody: []
+                tbody: [],
+                config: {
+                    checkbox: {
+                        allowed: false,
+                    }
+                }
             },
             pagination: {
                 maxInPage: 10,

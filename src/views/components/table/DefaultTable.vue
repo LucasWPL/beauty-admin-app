@@ -6,12 +6,19 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
+              <th v-if="this.values.config.checkbox.allowed" class="grid-checkbox-th"></th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 v-for="(value, index) in this.values.thead" :key="index">{{ value }}</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(tds, index) in this.values.tbody" :key="index">
+              <td v-if="this.values.config.checkbox.allowed">
+                <div class="div-align-center">
+                  <input type="checkbox" class="grid-checkbox"
+                    :value="tds[this.values.config.checkbox.index][this.values.config.checkbox.type]">
+                </div>
+              </td>
               <td v-for="(td, indexTd) in tds" :key="indexTd">
                 <div class="d-flex px-3 py-1">
                   <div class="d-flex flex-column justify-content-center">

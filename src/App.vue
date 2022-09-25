@@ -80,4 +80,17 @@ export default {
 .button-grid:hover {
   background-color: #123052 !important;
 }
+
+.grid-checkbox-th {
+  width: 6%;
+}
+
+.grid-checkbox {
+  width: 25px;
+  height: 25px;
+}
+
+.div-align-center {
+  text-align: center;
+}
 </style>
