@@ -93,7 +93,6 @@ import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import AlertMixin from '../mixin/AlertMixin'
 import FormsMixin from '../mixin/FormsMixin'
-import axios from 'axios'
 
 export default {
 	name: "costumer",
@@ -101,30 +100,31 @@ export default {
 	components: { ArgonInput, ArgonButton },
 	data() {
 		return {
-			formAction: process.env.VUE_APP_BACKEND_URL + 'api/costumers',
+			formSubmitUrl: process.env.VUE_APP_BACKEND_URL + 'api/costumers',
+			formSubmitMethod: this.checkAction()
 		}
 	},
 	methods: {
 		onSubmit: function () {
-
 			let myForm = document.getElementById('formCostumer');
 			let isFormValid = myForm.checkValidity();
-			let data = this.getAllData(myForm);
 
 			if (!isFormValid) {
 				myForm.reportValidity();
 			} else {
-				axios
-					.post(this.formAction, data)
-					.then(() => {
-						this.$router.push('costumers');
-						this.Toast('success', 'Cliente cadastrado com sucesso');
-					})
-					.catch(() => {
-						this.Toast('error', 'Houve um erro ao tentar salvar o cliente, tente novamente');
-					});
+				this.sendForm(
+					this.formSubmitUrl,
+					this.formSubmitMethod,
+					this.getAllData(myForm),
+					'costumers',
+					'Cliente cadastrado com sucesso',
+					'Houve um erro ao tentar salvar o cliente, tente novamente',
+				);
 			}
-		},
+		}
+	},
+	created() {
+		console.log(this.formSubmitMethod);
 	}
 };
 </script>

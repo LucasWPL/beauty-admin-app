@@ -85,7 +85,7 @@ export default {
     components: { ArgonInput, ArgonButton, Select2, ProcedureCardList },
     data() {
         return {
-            formAction: process.env.VUE_APP_BACKEND_URL + 'api/jobs',
+            formSubmitUrl: process.env.VUE_APP_BACKEND_URL + 'api/jobs',
             procedure: {
                 description: '',
                 duration: '',
@@ -129,7 +129,7 @@ export default {
         deleteProcedure(index) {
             this.procedureList.splice(index, 1)
         },
-        onSubmit() {
+        onSubmit: function () {
             let myForm = document.getElementById('formShedule');
             let isFormValid = myForm.checkValidity();
             let data = this.getAllData(myForm);
@@ -139,17 +139,16 @@ export default {
             if (!isFormValid) {
                 myForm.reportValidity();
             } else {
-                axios
-                    .post(this.formAction, data)
-                    .then(() => {
-                        this.$router.push('schedules');
-                        this.Toast('success', 'Agendamento cadastrado com sucesso');
-                    })
-                    .catch(() => {
-                        this.Toast('error', 'Houve um erro ao tentar salvar o agendamento, tente novamente');
-                    });
+                this.sendForm(
+                    this.formSubmitUrl,
+                    this.formSubmitMethod,
+                    data,
+                    'costumers',
+                    'Agendamento cadastrado com sucesso',
+                    'Houve um erro ao tentar salvar o agendamento, tente novamente',
+                );
             }
-        },
+        }
     }
 };
 </script>

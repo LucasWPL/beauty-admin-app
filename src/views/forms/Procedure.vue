@@ -50,7 +50,6 @@ import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import AlertMixin from '../mixin/AlertMixin'
 import FormsMixin from '../mixin/FormsMixin'
-import axios from 'axios'
 
 export default {
     name: "procedure",
@@ -58,7 +57,7 @@ export default {
     components: { ArgonInput, ArgonButton },
     data() {
         return {
-            formAction: process.env.VUE_APP_BACKEND_URL + 'api/procedures',
+            formSubmitUrl: process.env.VUE_APP_BACKEND_URL + 'api/procedures',
         }
     },
     created() {
@@ -67,22 +66,20 @@ export default {
         onSubmit: function () {
             let myForm = document.getElementById('formProcedure');
             let isFormValid = myForm.checkValidity();
-            let data = this.getAllData(myForm);
 
             if (!isFormValid) {
                 myForm.reportValidity();
             } else {
-                axios
-                    .post(this.formAction, data)
-                    .then(() => {
-                        this.$router.push('procedures');
-                        this.Toast('success', 'Procedimento cadastrado com sucesso');
-                    })
-                    .catch(() => {
-                        this.Toast('error', 'Houve um erro ao tentar salvar o procedumento, tente novamente');
-                    });
+                this.sendForm(
+                    this.formSubmitUrl,
+                    this.formSubmitMethod,
+                    this.getAllData(myForm),
+                    'procedures',
+                    'Procedimento cadastrado com sucesso',
+                    'Houve um erro ao tentar salvar o procedumento, tente novamente',
+                );
             }
-        },
+        }
     }
 };
 </script>
