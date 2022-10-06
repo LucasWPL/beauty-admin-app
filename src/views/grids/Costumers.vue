@@ -37,12 +37,12 @@ export default {
 				buttons: [
 					{
 						icon: 'fas fa-plus',
-						link: 'add-costumer',
+						routeName: 'add-costumer',
 						title: 'Adicionar',
 					},
 					{
 						icon: 'fas fa-edit',
-						link: 'edit-costumer',
+						routeName: 'edit-costumer',
 						title: 'Editar',
 					},
 					{

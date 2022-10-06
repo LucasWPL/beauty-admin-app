@@ -27,8 +27,8 @@ export default {
   ],
   methods: {
     getClickFunction(buttonInfo) {
-      if (buttonInfo.link) {
-        return this.$router.push({ path: buttonInfo.link, params: { selectedValues: this.selectedValues } });
+      if (buttonInfo.routeName) {
+        return this.$router.push({ name: buttonInfo.routeName, params: { selectedValues: this.selectedValues } });
       }
       if (buttonInfo.reloadPage) {
         return this.$router.go();

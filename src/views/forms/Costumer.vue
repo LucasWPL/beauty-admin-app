@@ -101,7 +101,6 @@ export default {
 	data() {
 		return {
 			formSubmitUrl: process.env.VUE_APP_BACKEND_URL + 'api/costumers',
-			formSubmitMethod: this.checkAction()
 		}
 	},
 	methods: {
@@ -114,7 +113,6 @@ export default {
 			} else {
 				this.sendForm(
 					this.formSubmitUrl,
-					this.formSubmitMethod,
 					this.getAllData(myForm),
 					'costumers',
 					'Cliente cadastrado com sucesso',
@@ -124,7 +122,15 @@ export default {
 		}
 	},
 	created() {
-		console.log(this.formSubmitMethod);
+		if (this.getAction() == 'PUT') {
+			let params = this.$route.params;
+			if (params.selectedValues == undefined || params.selectedValues.length == 0) {
+				this.$router.back();
+				return this.Toast('error', 'Nenhum registro selecionado');
+			}
+
+			this.id = params.selectedValues[0];
+		}
 	}
 };
 </script>

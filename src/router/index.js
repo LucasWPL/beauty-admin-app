@@ -42,12 +42,12 @@ const routes = [
   },
   {
     path: "/add-costumer",
-    name: "Cadastro cliente",
+    name: "add-costumer",
     component: CostumerForm,
   },
   {
     path: "/edit-costumer",
-    name: "Edição cliente",
+    name: "edit-costumer",
     component: CostumerForm,
   },
   {

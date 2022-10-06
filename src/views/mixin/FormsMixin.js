@@ -77,11 +77,11 @@ const formsMixin = {
                     this.allCostumers = list;
                 });
         },
-        checkAction: function () {
+        getAction: function () {
             return this.$route.path.startsWith("/edit-") ? 'PUT' : 'POST';
         },
-        sendForm: function (url, method, data, redirectTo, successMessage, errorMessage) {
-            const methodToBeCalled = method == 'PUT' ? axios.put : axios.post;
+        sendForm: function (url, data, redirectTo, successMessage, errorMessage) {
+            const methodToBeCalled = this.getAction == 'PUT' ? axios.put : axios.post;
             methodToBeCalled(url, data)
                 .then(() => {
                     this.$router.push(redirectTo);
