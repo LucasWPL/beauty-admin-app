@@ -26,7 +26,17 @@ router.beforeEach((to, from, next) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${loggedIn()}`
         }
     }
-})
+});
+
+axios.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.status === 401) {
+        localStorage.removeItem('accessToken');
+        router.push('/signin');
+    }
+    return error;
+});
 
 const appInstance = createApp(App);
 appInstance.use(store);
