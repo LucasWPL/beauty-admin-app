@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import $ from 'jquery'
 
 const formsMixin = {
     data() {
@@ -91,6 +92,19 @@ const formsMixin = {
                     this.Toast('error', errorMessage);
                 });
         },
+        loadFormValuesFromInputNames: function (url) {
+            axios
+                .get(process.env.VUE_APP_BACKEND_URL + url)
+                .then(response => {
+                    let values = response.data[0];
+                    $.each(values, function (index, value) {
+                        $('[name=' + index + ']').val(value);
+                    })
+                }).catch(() => {
+                    this.Toast('error', 'Houve um erro ao carregar os dados');
+                    this.$router.back();
+                });
+        }
     }
 };
 

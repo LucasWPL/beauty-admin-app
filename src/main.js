@@ -28,14 +28,15 @@ router.beforeEach((to, from, next) => {
     }
 });
 
-axios.interceptors.response.use(response => {
+axios.interceptors.response.use(function (response) {
     return response;
-}, error => {
-    if (error.response.status === 401) {
+}, function (error) {
+    if (401 === error.response.status) {
         localStorage.removeItem('accessToken');
         router.push('/signin');
+    } else {
+        return Promise.reject(error);
     }
-    return error;
 });
 
 const appInstance = createApp(App);

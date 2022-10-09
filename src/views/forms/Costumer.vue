@@ -20,6 +20,7 @@
 									<div class="col-md-8">
 										<label class="form-control-label">Nome</label>
 										<argon-input type="text" name="name" :isRequired=true />
+										<input type="hidden" name="id" />
 									</div>
 									<div class="col-md-4">
 										<label class="form-control-label">CPF</label>
@@ -130,6 +131,7 @@ export default {
 			}
 
 			this.id = params.selectedValues[0];
+			this.loadFormValuesFromInputNames('api/costumers/' + this.id);
 		}
 	}
 };
