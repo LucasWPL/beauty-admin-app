@@ -79,11 +79,11 @@ export default {
                 p1: value.phone,
               },
               {
-                p1: "Lista de procedimentos",
+                p1: value.procedures_list,
               },
               {
                 h6: moment(value.time).format('DD/MM/YYYY hh:mm'),
-                p2: "Duração: -",
+                p2: "Duração: " + value.duration,
               },
             ];
 

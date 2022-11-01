@@ -1,7 +1,11 @@
 up:
 	docker compose up -d
+	make bash
 down:
 	docker compose down
+restart:
+	make down
+	make up
 bash:
 	docker exec -it beauty-admin-app-node bash
 
