@@ -82,7 +82,9 @@ const formsMixin = {
             return this.$route.path.startsWith("/edit-") ? 'PUT' : 'POST';
         },
         sendForm: function (url, data, redirectTo, successMessage, errorMessage) {
-            const methodToBeCalled = this.getAction == 'PUT' ? axios.put : axios.post;
+            const methodToBeCalled = this.getAction() == 'PUT' ? axios.put : axios.post;
+            console.log(url);
+
             methodToBeCalled(url, data)
                 .then(() => {
                     this.$router.push(redirectTo);

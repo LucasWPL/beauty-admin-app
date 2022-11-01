@@ -9,7 +9,7 @@
 								<div class="d-flex align-items-center">
 									<p class="mb-0">Cadastro cliente</p>
 									<argon-button color="danger" size="sm" class="ms-auto" style="margin-right: 5px"
-										@click="$router.back()">
+										@click="$router.back()" type="button">
 										Voltar</argon-button>
 									<argon-button color="success" size="sm" class="">Salvar</argon-button>
 								</div>
@@ -131,6 +131,7 @@ export default {
 			}
 
 			this.id = params.selectedValues[0];
+			this.formSubmitUrl += '/' + this.id;
 			this.loadFormValuesFromInputNames('api/costumers/' + this.id);
 		}
 	}

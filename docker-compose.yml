@@ -2,11 +2,9 @@ version: '3'
 
 services:
   node:
-    container_name: beaty-admin-app-node
-    image: node:12
+    container_name: beauty-admin-app-node
+    build: Docker/
     ports:
       - '8080:8080'
     volumes:
       - ./:/srv/app
-    working_dir: /srv/app
-    command: 'npm run serve'

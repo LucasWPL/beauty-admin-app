@@ -33,8 +33,18 @@ export default {
           'Horário',
         ],
         tbody: [],
+        buttons: [
+          {
+            icon: 'fas fa-plus',
+            routeName: 'add-schedule',
+            title: 'Adicionar',
+          },
+        ],
         checkbox: {
-          allowed: false,
+          allowed: true,
+          index: 0,
+          type: 'p1',
+          selected: []
         }
       },
       pagination: {

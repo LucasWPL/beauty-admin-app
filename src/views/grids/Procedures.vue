@@ -35,8 +35,18 @@ export default {
                     'Valor',
                 ],
                 tbody: [],
+                buttons: [
+                    {
+                        icon: 'fas fa-plus',
+                        routeName: 'add-procedure',
+                        title: 'Adicionar',
+                    },
+                ],
                 checkbox: {
-                    allowed: false,
+                    allowed: true,
+                    index: 0,
+                    type: 'p1',
+                    selected: []
                 }
             },
             pagination: {

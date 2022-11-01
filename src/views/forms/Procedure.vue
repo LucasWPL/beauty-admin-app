@@ -72,7 +72,6 @@ export default {
             } else {
                 this.sendForm(
                     this.formSubmitUrl,
-                    this.formSubmitMethod,
                     this.getAllData(myForm),
                     'procedures',
                     'Procedimento cadastrado com sucesso',

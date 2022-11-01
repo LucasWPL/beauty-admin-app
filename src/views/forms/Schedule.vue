@@ -141,9 +141,8 @@ export default {
             } else {
                 this.sendForm(
                     this.formSubmitUrl,
-                    this.formSubmitMethod,
                     data,
-                    'costumers',
+                    'schedules',
                     'Agendamento cadastrado com sucesso',
                     'Houve um erro ao tentar salvar o agendamento, tente novamente',
                 );

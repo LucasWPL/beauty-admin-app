@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: "/add-procedure",
-    name: "Cadastro procedimento",
+    name: "add-procedure",
     component: ProcedureForm,
   },
   {
@@ -52,7 +52,7 @@ const routes = [
   },
   {
     path: "/add-schedule",
-    name: "Cadastro agendamento",
+    name: "add-schedule",
     component: ScheduleForm,
   },
   {
