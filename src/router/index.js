@@ -7,6 +7,7 @@ import CostumerForm from "../views/forms/Costumer.vue";
 import ProcedureForm from "../views/forms/Procedure.vue";
 import ScheduleForm from "../views/forms/Schedule.vue";
 import DeleteSchedule from "../views/actions/DeleteSchedule.vue";
+import DeleteProcedure from "../views/actions/DeleteProcedure.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
@@ -40,6 +41,11 @@ const routes = [
     path: "/edit-procedure",
     name: "edit-procedure",
     component: ProcedureForm,
+  },
+  {
+    path: "/delete-procedure",
+    name: "delete-procedure",
+    component: DeleteProcedure,
   },
   {
     path: "/costumers",
