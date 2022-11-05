@@ -36,6 +36,11 @@ const routes = [
     component: ProcedureForm,
   },
   {
+    path: "/edit-procedure",
+    name: "edit-procedure",
+    component: ProcedureForm,
+  },
+  {
     path: "/costumers",
     name: "Clientes",
     component: Costumers,

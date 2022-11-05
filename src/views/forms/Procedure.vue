@@ -61,6 +61,22 @@ export default {
         }
     },
     created() {
+        if (this.getAction() == 'PUT') {
+            let params = this.$route.params;
+            if (params.selectedValues == undefined || params.selectedValues.length == 0) {
+                this.$router.back();
+                return this.Toast('error', 'Nenhum registro selecionado');
+            }
+
+            this.id = params.selectedValues[0];
+            this.formSubmitUrl += '/' + this.id;
+            let opt = {
+                'value': 'moeda',
+                'duration': 'time'
+            };
+
+            this.loadFormValuesFromInputNames('api/procedures/' + this.id, opt);
+        }
     },
     methods: {
         onSubmit: function () {
@@ -75,7 +91,7 @@ export default {
                     this.getAllData(myForm),
                     'procedures',
                     'Procedimento cadastrado com sucesso',
-                    'Houve um erro ao tentar salvar o procedumento, tente novamente',
+                    'Houve um erro ao tentar salvar o procedimento, tente novamente',
                 );
             }
         }

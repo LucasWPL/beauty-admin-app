@@ -94,18 +94,40 @@ const formsMixin = {
                     this.Toast('error', errorMessage);
                 });
         },
-        loadFormValuesFromInputNames: function (url) {
+        loadFormValuesFromInputNames: function (url, opt = {}) {
+            console.log(this.minutesToDatetime(61));
+
             axios
                 .get(process.env.VUE_APP_BACKEND_URL + url)
                 .then(response => {
                     let values = response.data[0];
-                    $.each(values, function (index, value) {
+                    $.each(values, (index, value) => {
+                        if (index in opt) {
+                            if (opt[index] == 'moeda') {
+                                let aux = parseFloat(value);
+                                value = aux.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                            }
+                            if (opt[index] == 'time') {
+                                value = this.minutesToDatetime(value);
+                            }
+                        }
+
                         $('[name=' + index + ']').val(value);
                     })
                 }).catch(() => {
                     this.Toast('error', 'Houve um erro ao carregar os dados');
                     this.$router.back();
                 });
+        },
+        minutesToDatetime(value) {
+            let hours = parseInt(value / 60);
+            let remainingMinutes = String(value - (hours * 60));
+
+            if (hours == 0) {
+                return value;
+            }
+
+            return hours + ":" + remainingMinutes.padStart(2, '0');
         }
     }
 };

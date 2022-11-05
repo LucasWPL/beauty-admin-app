@@ -29,6 +29,7 @@ export default {
                     title: "Lista de procedimentos",
                 },
                 thead: [
+                    'ID',
                     'Nome',
                     'Dificuldade',
                     'Duração média',
@@ -40,6 +41,16 @@ export default {
                         icon: 'fas fa-plus',
                         routeName: 'add-procedure',
                         title: 'Adicionar',
+                    },
+                    {
+                        icon: 'fas fa-edit',
+                        routeName: 'edit-procedure',
+                        title: 'Editar',
+                    },
+                    {
+                        icon: 'fas fa-trash',
+                        routeName: 'delete-procedure',
+                        title: 'Deletar',
                     },
                 ],
                 checkbox: {
@@ -76,6 +87,9 @@ export default {
 
                     data.filtred.map((value) => {
                         let listValue = [
+                            {
+                                p1: value.id,
+                            },
                             {
                                 h6: value.description,
                             },

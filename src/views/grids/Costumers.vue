@@ -50,7 +50,7 @@ export default {
 						title: 'Imprimir',
 					},
 					{
-						icon: 'fas fa-delete-left',
+						icon: 'fas fa-trash',
 						title: 'Deletar',
 					},
 					{
