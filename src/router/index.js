@@ -6,6 +6,7 @@ import Costumers from "../views/grids/Costumers.vue";
 import CostumerForm from "../views/forms/Costumer.vue";
 import ProcedureForm from "../views/forms/Procedure.vue";
 import ScheduleForm from "../views/forms/Schedule.vue";
+import DeleteSchedule from "../views/actions/DeleteSchedule.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
@@ -59,6 +60,11 @@ const routes = [
     path: "/add-schedule",
     name: "add-schedule",
     component: ScheduleForm,
+  },
+  {
+    path: "/delete-schedule",
+    name: "delete-schedule",
+    component: DeleteSchedule,
   },
   {
     path: "/signin",

@@ -8,6 +8,10 @@ const formatterMixin = {
             return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(value);
         },
         convertToHoursMins(value) {
+            if (value == null) {
+                value = 0;
+            }
+
             let hours = parseInt(value / 60);
             let minutes = value % 60;
             if (hours == 0) {

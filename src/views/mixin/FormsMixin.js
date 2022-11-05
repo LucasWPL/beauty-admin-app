@@ -83,7 +83,6 @@ const formsMixin = {
         },
         sendForm: function (url, data, redirectTo, successMessage, errorMessage) {
             const methodToBeCalled = this.getAction() == 'PUT' ? axios.put : axios.post;
-            console.log(url);
 
             methodToBeCalled(url, data)
                 .then(() => {
@@ -95,8 +94,6 @@ const formsMixin = {
                 });
         },
         loadFormValuesFromInputNames: function (url, opt = {}) {
-            console.log(this.minutesToDatetime(61));
-
             axios
                 .get(process.env.VUE_APP_BACKEND_URL + url)
                 .then(response => {

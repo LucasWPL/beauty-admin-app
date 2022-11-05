@@ -12,11 +12,13 @@
 <script>
 import DefaultTable from "./../components/table/DefaultTable.vue";
 import Pagination from "./parts/Pagination.vue";
+import FormatterMixin from '../mixin/FormatterMixin';
 import axios from 'axios'
 import moment from 'moment'
 
 export default {
   name: "tables",
+  mixins: [FormatterMixin],
   components: {
     DefaultTable,
     Pagination,
@@ -28,6 +30,7 @@ export default {
           title: "Procedimentos agendados",
         },
         thead: [
+          'ID',
           'Cliente',
           'Procedimentos',
           'Horário',
@@ -38,6 +41,11 @@ export default {
             icon: 'fas fa-plus',
             routeName: 'add-schedule',
             title: 'Adicionar',
+          },
+          {
+            icon: 'fas fa-trash',
+            routeName: 'delete-schedule',
+            title: 'Deletar',
           },
         ],
         checkbox: {
@@ -72,8 +80,11 @@ export default {
 
           let list = [];
 
-          data.filtred.map(function (value) {
+          data.filtred.map((value) => {
             let listValue = [
+              {
+                p1: value.id,
+              },
               {
                 h6: value.name,
                 p1: value.phone,
@@ -83,7 +94,7 @@ export default {
               },
               {
                 h6: moment(value.time).format('DD/MM/YYYY hh:mm'),
-                p2: "Duração: " + value.duration,
+                p2: "Duração: " + this.convertToHoursMins(value.duration),
               },
             ];
 

@@ -82,7 +82,6 @@ export default {
         generateTableValues() {
             this.getData()
                 .then(data => {
-
                     let list = [];
 
                     data.filtred.map((value) => {
