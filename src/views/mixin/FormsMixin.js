@@ -30,6 +30,9 @@ const formsMixin = {
         }
     },
     methods: {
+        elementById(id) {
+            return document.getElementById(id);
+        },
         elementValue(id) {
             return document.getElementById(id).value;
         },
@@ -47,6 +50,17 @@ const formsMixin = {
                 Object.assign(data, { [key]: val })
             }
             return data;
+        },
+        getFormData(object) {
+            const formData = new FormData();
+
+            console.log(object);
+
+            Object.keys(object).forEach(key => {
+                console.log(key, object[key]);
+                formData.append(key, object[key])
+            });
+            return formData;
         },
         setAllProceduresList() {
             axios
@@ -81,10 +95,12 @@ const formsMixin = {
         getAction: function () {
             return this.$route.path.startsWith("/edit-") ? 'PUT' : 'POST';
         },
-        sendForm: function (url, data, redirectTo, successMessage, errorMessage) {
-            const methodToBeCalled = this.getAction() == 'PUT' ? axios.put : axios.post;
+        sendForm: function (url, data, redirectTo, successMessage, errorMessage, options = {}, forceMethod = null) {
+            let method = forceMethod ?? this.getAction();
+            const methodToBeCalled = method == 'PUT' ? axios.put : axios.post;
+            console.log(data, method);
 
-            methodToBeCalled(url, data)
+            methodToBeCalled(url, data, options)
                 .then(() => {
                     this.$router.push(redirectTo);
                     this.Toast('success', successMessage);
