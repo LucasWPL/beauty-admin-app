@@ -33,6 +33,7 @@ export default {
           'ID',
           'Cliente',
           'Procedimentos',
+          'Status',
           'Horário',
         ],
         tbody: [],
@@ -41,6 +42,11 @@ export default {
             icon: 'fas fa-plus',
             routeName: 'add-schedule',
             title: 'Adicionar',
+          },
+          {
+            icon: 'fas fa-check',
+            routeName: 'finish-schedule',
+            title: 'Finalizar',
           },
           {
             icon: 'fas fa-trash',
@@ -91,6 +97,9 @@ export default {
               },
               {
                 p1: value.procedures_list,
+              },
+              {
+                h6: this.ucFirst(value.status),
               },
               {
                 h6: moment(value.time).format('DD/MM/YYYY hh:mm'),

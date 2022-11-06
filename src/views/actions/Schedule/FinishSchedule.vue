@@ -1,9 +1,9 @@
 <script>
 import axios from 'axios'
-import AlertMixin from '../mixin/AlertMixin'
+import AlertMixin from '../../mixin/AlertMixin'
 
 export default {
-    name: "delete-schedule",
+    name: "finish-schedule",
     mixins: [AlertMixin],
     created() {
         let params = this.$route.params;
@@ -12,18 +12,17 @@ export default {
             return this.Toast('error', 'Nenhum registro selecionado');
         }
 
-        let id = params.selectedValues[0];
-        this.deleteJob(id);
+        this.finishJob(params.selectedValues[0]);
         this.$router.back();
     },
     methods: {
-        deleteJob(id) {
+        finishJob(id) {
             axios
-                .delete(process.env.VUE_APP_BACKEND_URL + 'api/jobs/' + id, {
+                .put(process.env.VUE_APP_BACKEND_URL + 'api/jobs/finish/' + id, {
 
                 })
                 .then(() => {
-                    this.Toast('success', 'Agendamento apagado com sucesso');
+                    this.Toast('success', 'Agendamento finalizado com sucesso');
                 });
         }
     }
