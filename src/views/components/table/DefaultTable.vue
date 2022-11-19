@@ -26,6 +26,8 @@
                     <h6 class="mb-0 text-sm">{{ td.h6 }}</h6>
                     <p class="text-xs font-weight-bold mb-0">{{ td.p1 }}</p>
                     <p class="text-xs text-secondary mb-0">{{ td.p2 }}</p>
+                    <argon-button :color="td.buttonType" size="sm" type="button" v-if="td.button">{{ td.button }}
+                    </argon-button>
                   </div>
                 </div>
               </td>
@@ -39,12 +41,14 @@
 
 <script>
 import DefaultHeader from "./parts/DefaultHeader.vue";
+import ArgonButton from "@/components/ArgonButton.vue";
 
 export default {
   name: "default-table",
   props: ['values'],
   components: {
     DefaultHeader,
+    ArgonButton,
   },
   methods: {
     changeSelected(value) {

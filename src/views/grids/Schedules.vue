@@ -99,7 +99,8 @@ export default {
                 p1: value.procedures_list,
               },
               {
-                h6: this.ucFirst(value.status),
+                button: this.ucFirst(value.status),
+                buttonType: value.status == 'finalizado' ? 'success' : ''
               },
               {
                 h6: moment(value.time).format('DD/MM/YYYY hh:mm'),
