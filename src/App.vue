@@ -72,6 +72,17 @@ export default {
   color: transparent;
 }
 
+@media screen and (max-width: 600px) {
+  .fake-label {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 28%;
+  }
+}
+
 .button-grid {
   margin: 4px !important;
   cursor: pointer;

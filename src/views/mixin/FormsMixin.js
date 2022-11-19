@@ -36,6 +36,9 @@ const formsMixin = {
         elementValue(id) {
             return document.getElementById(id).value;
         },
+        clearElementValue(id) {
+            document.getElementById(id).value = '';
+        },
         cleanElements(elements) {
             elements = [].concat(elements);
             elements.forEach((value) => {

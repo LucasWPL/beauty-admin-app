@@ -13,10 +13,10 @@
                 <div class="card-body">
                   <form role="form" id="formLogin" v-on:submit.prevent="onSubmit">
                     <div class="mb-3">
-                      <argon-input type="email" placeholder="Email" name="email" size="lg" :isRequired=true />
+                      <argon-input type="email" placeholder="Email" name="email" size="lg" :required=true />
                     </div>
                     <div class="mb-3">
-                      <argon-input type="password" placeholder="Password" name="password" size="lg" :isRequired=true />
+                      <argon-input type="password" placeholder="Password" name="password" size="lg" :required=true />
                     </div>
                     <argon-switch id="rememberMe">Me mantenha conectado</argon-switch>
 

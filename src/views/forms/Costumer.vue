@@ -19,7 +19,7 @@
 								<div class="row">
 									<div class="col-md-8">
 										<label class="form-control-label">Nome</label>
-										<argon-input type="text" name="name" :isRequired=true />
+										<argon-input type="text" name="name" :required=true />
 										<input type="hidden" name="id" />
 									</div>
 									<div class="col-md-4">
@@ -33,12 +33,12 @@
 									</div>
 									<div class="col-md-4">
 										<label class="form-control-label">Telefone</label>
-										<argon-input type="text" name="phone" :isRequired=true
+										<argon-input type="text" name="phone" :required=true
 											:mask="['(##) ####-####', '(##) #####-####']" />
 									</div>
 									<div class="col-md-4">
 										<label class="form-control-label">Indicação?</label>
-										<select class="form-control" name="is_recommendation" :isRequired=true>
+										<select class="form-control" name="is_recommendation" :required=true>
 											<option value="0">Não</option>
 											<option value="1">Sim</option>
 										</select>

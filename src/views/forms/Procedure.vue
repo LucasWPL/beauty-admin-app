@@ -16,16 +16,16 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-control-label">Procedimento</label>
-                                        <argon-input type="text" name="description" isRequired="true" />
+                                        <argon-input type="text" name="description" required="true" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-control-label">Duração (hh:mm)</label>
-                                        <argon-input type="text" name="duration" isRequired="true"
+                                        <argon-input type="text" name="duration" required="true"
                                             :mask="this.maskHourAndMinutes" />
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-control-label">Dificuldade</label>
-                                        <select class="form-control" name="dificulty" isRequired="true">
+                                        <select class="form-control" name="dificulty" required="true">
                                             <option value="simples">Simples</option>
                                             <option value="normal" selected>Normal</option>
                                             <option value="complexo">Complexo</option>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-control-label">Valor</label>
-                                        <argon-input type="text" name="value" isRequired="true" :mask="this.maskCoin" />
+                                        <argon-input type="text" name="value" required="true" :mask="this.maskCoin" />
                                     </div>
                                 </div>
                             </div>

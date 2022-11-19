@@ -14,12 +14,42 @@
                             <div class="card-body">
                                 <p class="text-uppercase text-sm">Dados cadastrais</p>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <input type="hidden" name="pre_registration" v-bind:value="this.preRegistration">
+                                    <div class="col-md-5"
+                                        v-bind:style='{ "display": (!this.preRegistration ? "block" : "none") }'>
                                         <label class="form-control-label">Cliente</label>
                                         <Select2 :name="'costumer_id'" :options="allCostumers" class="form-control"
-                                            required />
+                                            v-bind:required="!this.preRegistration" />
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3"
+                                        v-bind:style='{ "display": (this.preRegistration ? "block" : "none") }'>
+                                        <label class="form-control-label">Nome do cliente</label>
+                                        <argon-input :name="'costumer_name'" v-bind:required="this.preRegistration" />
+                                    </div>
+                                    <div class="col-md-2"
+                                        v-bind:style='{ "display": (this.preRegistration ? "block" : "none") }'>
+                                        <label class="form-control-label">Telefone do cliente</label>
+                                        <argon-input :name="'costumer_phone'" v-bind:required="this.preRegistration"
+                                            :mask="['(##) ####-####', '(##) #####-####']" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="fake-label">.</label>
+                                        <argon-button :fullWidth="true" class="'form-control'" type="button"
+                                            id="botao-novo-cliente"
+                                            v-bind:style='{ "display": (!this.preRegistration ? "block" : "none") }'
+                                            @click="switchPreRegistration">
+                                            <i class="fas fa-plus me-2"></i>
+                                            Novo cliente
+                                        </argon-button>
+                                        <argon-button :fullWidth="true" class="'form-control'" type="button"
+                                            id="botao-cliente-existente"
+                                            v-bind:style='{ "display": (this.preRegistration ? "block" : "none") }'
+                                            @click="switchPreRegistration">
+                                            <i class="fa-solid fa-arrow-rotate-right"></i>
+                                            Cliente existente
+                                        </argon-button>
+                                    </div>
+                                    <div class="col-md-5">
                                         <label class="form-control-label">Data do
                                             agendamento</label>
                                         <argon-input type="datetime-local" name="time" required />
@@ -47,8 +77,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label class="fake-label">.</label>
-                                        <argon-button :fullWidth="true" type="button" @click="addProcedure">Adicionar
-                                            procedimento
+                                        <argon-button :fullWidth="true" type="button" @click="addProcedure">
+                                            <i class="fa-solid fa-down-long"></i>
+                                            Adicionar procedimento
                                         </argon-button>
                                     </div>
                                 </div>
@@ -94,6 +125,7 @@ export default {
             allProcedures: [],
             procedureList: [],
             allCostumers: [],
+            preRegistration: false,
         }
     },
     created() {
@@ -101,6 +133,9 @@ export default {
         this.setAllProceduresList();
     },
     methods: {
+        switchPreRegistration() {
+            this.preRegistration = !this.preRegistration;
+        },
         setProcedureValuesFromId(id) {
             axios
                 .get(process.env.VUE_APP_BACKEND_URL + 'api/procedures/' + id)
