@@ -12,6 +12,14 @@ function loggedIn() {
     return localStorage.getItem('accessToken');
 }
 
+function isMobile() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true
+    } else {
+        return false
+    }
+}
+
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.guest)) {
         next()
@@ -22,7 +30,11 @@ router.beforeEach((to, from, next) => {
                 query: { redirect: to.fullPath }
             })
         } else {
-            next()
+            if (isMobile()) {
+                store.commit('navbarMinimize');
+            }
+
+            next();
             axios.defaults.headers.common['Authorization'] = `Bearer ${loggedIn()}`
         }
     }
