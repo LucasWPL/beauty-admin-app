@@ -4,8 +4,8 @@
       <h6>{{ title }}</h6>
       <p class="text-sm">
         <i class="fa fa-arrow-up text-success"></i>
-        <span class="font-weight-bold">{{detail1}}</span>
-        {{detail2}}
+        <span class="font-weight-bold">{{ detail1 }}</span>
+        {{ detail2 }}
       </p>
     </div>
     <div class="p-3 card-body">
@@ -29,11 +29,11 @@ export default {
     },
     detail1: {
       type: String,
-      default: " 4% mais",
+      default: " Procedimentos feitos",
     },
     detail2: {
       type: String,
-      default: "em 2022",
+      default: "",
     },
   },
 
@@ -48,19 +48,19 @@ export default {
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+        labels: ["Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         datasets: [
           {
-            label: "Mobile apps",
+            label: "Procedimentos feitos",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,
-            borderColor: "#4BB543 ",
+            borderColor: "#4BB543",
             backgroundColor: gradientStroke1,
             // eslint-disable-next-line no-dupe-keys
             borderWidth: 3,
             fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            data: [50, 40, 50, 40, 50, 40, 50, 40, 50, 40, 50, 40],
             maxBarThickness: 6,
           },
         ],
